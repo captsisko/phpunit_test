@@ -8,31 +8,41 @@ use PHPUnit\Framework\TestCase;
  */
 class UserTest extends TestCase
 {
-    public static function setUpBeforeClass(): void
+    public $user;
+
+    public function setUp(): void
     {
-        // require 'User.php';
+        $this->user = new User();
     }
+
+    public static function setUpBeforeClass(): void{}
+    
     
     /** @test */
     public function ReturnsFullName()
     {
-        $user = new User();
-        $user->first_name = 'Benjamin';
-        $user->surname = 'Sisko';
+        $this->user->first_name = 'Benjamin';
+        $this->user->surname = 'Sisko';
 
-        $this->assertEquals($user->getFullName(), 'Benjamin Sisko');
+        $this->assertEquals($this->user->getFullName(), 'Benjamin Sisko');
     }
 
     /** @test */
     public function FullnameEmptyByDefault()
     {
-        $user = new User();
-
-        $this->assertEmpty($user->getFullName());
-        $this->assertEquals('', $user->getFullName());
+        $this->assertEmpty($this->user->getFullName());
+        $this->assertEquals('', $this->user->getFullName());
     }
 
+    
+    /** @test */
+    public function EmailNotification()
+    {
+        // Test
+        $this->user->email = 'picard@enterprise.fed';
 
+        $this->assertTrue($this->user->notify('Beam me up!'));
+    }
     
 
 }

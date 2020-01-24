@@ -20,6 +20,8 @@ class User
      */
     public $surname;
 
+    public $email;
+
     /**
      * Get the user's full name from their first name and surname
      *
@@ -28,5 +30,11 @@ class User
     public function getFullName()
     {
         return trim("$this->first_name $this->surname");
+    }
+
+    public function notify($message)
+    {
+        $mailer = new Mailer();
+        return $mailer->sendMessage($this->email, $message);
     }
 }

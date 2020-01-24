@@ -52,8 +52,6 @@ class QueueTest extends TestCase
         $this->queue->push('Data');
 
         $this->assertEquals('Riker', $this->queue->pop());
-    }
-    
-    
+    }    
 
 }
