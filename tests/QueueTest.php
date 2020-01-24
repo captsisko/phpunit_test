@@ -54,6 +54,36 @@ class QueueTest extends TestCase
         $this->assertEquals('Riker', $this->queue->pop());
     }
     
+    /** @test */
+    public function Max_Additions_To_Queue()
+    {
+        $captains = ['Kirk', 'Spock', 'Picard', 'Sisko', 'Janeway'];
+
+        for($i=0; $i < Queue::MAX_ITEMS; $i++){
+            $this->queue->push($captains[$i]);
+        }
+
+        $this->assertEquals(Queue::MAX_ITEMS, $this->queue->getCount());
+    }
+
+    /** @test */
+    public function Max_Additions_To_Queue_And_Then_Some()
+    {
+        $captains = ['Kirk', 'Spock', 'Picard', 'Sisko', 'Janeway', 'Worf'];
+
+        for($i=0; $i < Queue::MAX_ITEMS; $i++){
+            $this->queue->push($captains[$i]);
+        }
+
+        $this->expectException(QueueException::class);
+        // $this->expectExceptionCode(ClassName::CONST);
+        $this->expectExceptionMessage('QUEUE IS FULL!');
+
+        $this->queue->push('Scottie');
+
+        $this->assertEquals(Queue::MAX_ITEMS, $this->queue->getCount());
+
+    }
     
 
 }
