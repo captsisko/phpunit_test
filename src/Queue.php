@@ -44,9 +44,4 @@ class Queue
     {
         return count($this->items);
     }
-
-    public function empty()
-    {
-        $this->items = [];
-    }
 }

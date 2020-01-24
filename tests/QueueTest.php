@@ -8,27 +8,14 @@ use PHPUnit\Framework\TestCase;
  */
 class QueueTest extends TestCase
 {
-    public static $queue;
+    public $queue;
     
     protected function setUp(): void
     {
-        // $this->queue = new Queue();
+        $this->queue = new Queue();
         // code
-        static::$queue->empty();
     }
 
-    public static function setUpBeforeClass(): void
-    {
-        // code
-        static::$queue = new Queue;
-    }
-
-    public static function tearDownAfterClass(): void
-    {
-        // code
-        static::$queue = null;
-    }
-    
     protected function tearDown(): void {}
     
     
@@ -36,35 +23,35 @@ class QueueTest extends TestCase
     public function NewQuesIsEmpty()
     {
 
-        $this->assertEmpty(static::$queue->getCount());
-        $this->assertEquals(0, static::$queue->getCount());
+        $this->assertEmpty($this->queue->getCount());
+        $this->assertEquals(0, $this->queue->getCount());
     }
 
     /** @test */
     public function NewItemIsAdded()
     {
-        static::$queue->push('sisko');
+        $this->queue->push('sisko');
 
-        $this->assertEquals(1, static::$queue->getCount());
+        $this->assertEquals(1, $this->queue->getCount());
     }
 
     /** @test */
     public function QueueIsEmpty()
     {
-        static::$queue->push('Picard');
-        $item = static::$queue->pop();
+        $this->queue->push('Picard');
+        $item = $this->queue->pop();
 
-        $this->assertEmpty(static::$queue->getCount());
+        $this->assertEmpty($this->queue->getCount());
         $this->assertEquals('Picard', $item);
     }
     
     /** @test */
     public function CheckingItemsAreRemovedFromFrontofQueue()
     {
-        static::$queue->push('Riker');
-        static::$queue->push('Data');
+        $this->queue->push('Riker');
+        $this->queue->push('Data');
 
-        $this->assertEquals('Riker', static::$queue->pop());
+        $this->assertEquals('Riker', $this->queue->pop());
     }
     
     
