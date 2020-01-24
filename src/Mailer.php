@@ -17,6 +17,9 @@ class Mailer
      */
     public function sendMessage($email, $message)
     {
+        if( empty($email) )
+            throw new Exception("Error: email is empty", 1);
+        
         // Use mail() or PHPMailer for example
         sleep(3);
 

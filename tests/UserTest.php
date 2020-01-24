@@ -49,6 +49,21 @@ class UserTest extends TestCase
 
         $this->assertTrue($this->user->notify('Beam me up!'));
     }
+
+    /** @test */
+    public function EmptyEmailAddress()
+    {
+        // Test
+        // $this->user->email = 'sevenOfNine@voyager.deltaQuad';
+        $this->user->email = '';
+        $mailer = $this->getMockBuilder(Mailer::class)->setMethods()->getMock();
+
+        $this->user->setMailer($mailer);
+        
+        $this->expectException(Exception::class);
+        $this->assertNotEmpty($this->user->notify('Resistance is futile'));
+    }
+    
     
 
 }
