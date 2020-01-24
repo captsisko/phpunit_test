@@ -18,6 +18,8 @@ class MailerTest extends TestCase
         $result = $mailer->sendMessage('sisko@ds9.fed', 'Hailing frequencies open');
 
         var_dump($result);
+
+        $this->assertTrue($result);
     }
 
 }
