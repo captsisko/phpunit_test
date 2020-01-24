@@ -12,8 +12,9 @@ class MailerTest extends TestCase
     public function test_function()
     {
         // Test
-        // $mailer = new Mailer();
         $mailer = $this->createMock(Mailer::class);
+        $mailer->method('sendMessage')->willReturn(true);
+
         $result = $mailer->sendMessage('sisko@ds9.fed', 'Hailing frequencies open');
 
         var_dump($result);
