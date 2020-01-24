@@ -39,7 +39,9 @@ class UserTest extends TestCase
     public function EmailNotification()
     {
         $mailerMock = $this->createMock(Mailer::class);
-        $mailerMock->method('sendMessage')
+        $mailerMock->expects($this->once())
+                    ->method('sendMessage')
+                    ->with('picard@enterprise.fed', 'Beam me up!')
                     ->willReturn(true);
         // Test
         $this->user->email = 'picard@enterprise.fed';
