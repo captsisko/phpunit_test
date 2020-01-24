@@ -9,12 +9,5 @@ class ExampleTest extends MockeryTestCase
     {
         $this->assertEquals(4, 2 + 2);
     }
-
-    protected function tearDown(): void
-    {
-        // code
-        Mockery::close();
-    }
-    
     
 }
